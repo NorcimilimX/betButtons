@@ -2,7 +2,8 @@
   <div class="menu-container" @click="toggleMenu" :class="{ expanded: isExpanded }">
     <div v-if="!isExpanded" class="burger-icon">☰</div>
     <div v-else class="menu-content">
-      <button @click.stop="authStore.logout">Вийти</button>
+      <span>Hi bet picker, {{ userName }}</span>
+      <button @click.stop="authStore.logout">Log out</button>
     </div>
   </div>
 </template>
@@ -13,6 +14,7 @@ import { useAuthStore } from '@/stores/authStore'
 
 const authStore = useAuthStore()
 const isExpanded = ref(false)
+const userName = authStore.user
 
 const toggleMenu = () => {
   isExpanded.value = !isExpanded.value
@@ -38,9 +40,9 @@ const toggleMenu = () => {
 
 .menu-container.expanded {
   top: 15px;
-  width: 200px;
-  height: 100px;
-  border-radius: 10px;
+  width: 250px;
+  height: 140px;
+  border-radius: 12px;
   justify-content: space-around;
 }
 
@@ -50,17 +52,28 @@ const toggleMenu = () => {
 
 .menu-content {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
   align-items: center;
   justify-content: center;
   width: 100%;
-}
 
-button {
-  background: red;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
+  span, button {
+    font-size: 22px;
+  }
+
+  button {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid #FFA500FF;
+      color: #EE82EEFF;
+    }
+  }
 }
 </style>

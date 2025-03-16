@@ -20,7 +20,7 @@ const { logMessages } = storeToRefs(logStore)
   font-family: monospace;
   padding: 10px;
   overflow-y: auto;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-bottom: 10px;
   white-space: pre-wrap;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);

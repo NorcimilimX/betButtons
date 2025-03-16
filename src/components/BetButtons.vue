@@ -1,6 +1,12 @@
 <template>
   <div class="container">
-    <button v-for="(emoji, index) in emojis" :key="index" class="button" @click="logClick(index, emoji)">
+    <button
+        v-for="(emoji, index) in emojis"
+        :key="index"
+        class="button"
+        :class="{'selected': selectedIndex === index}"
+        @click="handleClick(index, emoji)"
+    >
       Bet {{ emoji }}
     </button>
   </div>
@@ -10,9 +16,16 @@
 import { ref } from 'vue'
 import { useLogStore } from '@/stores/logStore'
 
-const emojis = ref(["🧬", "🔮", "🌟", "💎️", "♦️", "🧿", "🔸", "🔳", "🪬"])
+const emojis = ref(["🎭", "🔮", "🌟", "💎️", "♦️", "🧿", "🔸", "🔳", "🪬"])
 const logStore = useLogStore()
 const { logClick } = logStore
+
+const selectedIndex = ref<number | null>(null)
+
+const handleClick = (index: number, emoji: string) => {
+  selectedIndex.value = index
+  logClick(index, emoji)
+}
 </script>
 
 <style scoped>
@@ -35,11 +48,19 @@ const { logClick } = logStore
   background-color: white;
   cursor: pointer;
   transition: background 0.3s, border-color 0.3s;
+  text-transform: uppercase;
 }
-.button:hover, .button:focus {
+.button:hover {
   background: linear-gradient(135deg, violet, orange);
   border-color: transparent;
   color: white;
   outline: none;
+}
+
+.selected {
+  background: linear-gradient(135deg, violet, orange);
+  color: white;
+  outline: none;
+  border: transparent;
 }
 </style>

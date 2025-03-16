@@ -1,6 +1,7 @@
 <template>
   <AuthForm v-if="!authStore.user" />
   <div v-else class="main-container">
+    <RulesModal />
     <CommandMonitor />
     <GridButtons />
     <BurgerMenu />
@@ -12,6 +13,7 @@ import AuthForm from '@/components/AuthForm.vue'
 import GridButtons from '@/components/GridButtons.vue'
 import BurgerMenu from '@/components/BurgerMenu.vue'
 import CommandMonitor from "@/components/CommandMonitor.vue"
+import RulesModal from "@/components/RulesModal.vue";
 
 import { useAuthStore } from '@/stores/authStore'
 
