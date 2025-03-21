@@ -2,7 +2,7 @@
   <div class="menu-container" @click="toggleMenu" :class="{ expanded: isExpanded }">
     <div v-if="!isExpanded" class="burger-icon">☰</div>
     <div v-else class="menu-content">
-      <span>Hi bet picker, {{ userName }}</span>
+      <span>Hi bet picker, {{ authStore.userName }}</span>
       <button @click.stop="authStore.logout">Log out</button>
     </div>
   </div>
@@ -14,7 +14,6 @@ import { useAuthStore } from '@/stores/authStore'
 
 const authStore = useAuthStore()
 const isExpanded = ref(false)
-const userName = authStore.user
 
 const toggleMenu = () => {
   isExpanded.value = !isExpanded.value
@@ -41,7 +40,7 @@ const toggleMenu = () => {
 .menu-container.expanded {
   top: 15px;
   width: 250px;
-  height: 140px;
+  height: 135px;
   border-radius: 12px;
   justify-content: space-around;
 }

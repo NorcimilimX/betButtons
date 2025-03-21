@@ -23,7 +23,6 @@ const { logMessages } = storeToRefs(logStore)
   border-radius: 12px;
   margin-bottom: 10px;
   white-space: pre-wrap;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
 }
 </style>

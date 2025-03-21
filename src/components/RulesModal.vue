@@ -13,43 +13,42 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from 'vue'
 
-const isVisible = ref(true);
+const isVisible = ref(true)
 const logRulesMessage = ref(
     'terminal@output>>> The rules are pretty simple. You have a few bet buttons, and you need to choose which one will win. After you click a button, it gets highlighted with a violet-orange gradient. When you\'re done, the app randomly selects a bet that will win. If both picks match, you\'re a winner; otherwise, keep trying until you succeed 😉'
-);
-const displayedText = ref('');
-const isTyping = ref(true);
-const isCursorVisible = ref(true);
+)
+const displayedText = ref('')
+const isTyping = ref(true)
+const isCursorVisible = ref(true)
 
 const typeText = () => {
-  let index = 0;
+  let index = 0
   const interval = setInterval(() => {
     if (index < logRulesMessage.value.length) {
-      displayedText.value += logRulesMessage.value[index];
-      index++;
+      displayedText.value += logRulesMessage.value[index]
+      index++
     } else {
       clearInterval(interval);
-      isTyping.value = false; // Друк завершено
+      isTyping.value = false
     }
-  }, 15);
+  }, 15)
 
-  // Блимання курсора після завершення друку
   setInterval(() => {
     if (!isTyping.value) {
-      isCursorVisible.value = !isCursorVisible.value;
+      isCursorVisible.value = !isCursorVisible.value
     }
-  }, 500);
-};
+  }, 500)
+}
 
 const closeModal = () => {
-  isVisible.value = false;
-};
+  isVisible.value = false
+}
 
 onMounted(() => {
-  typeText();
-});
+  typeText()
+})
 </script>
 
 <style scoped>
@@ -131,6 +130,6 @@ onMounted(() => {
 }
 
 .confirm-button:hover {
-  background: linear-gradient(45deg, #228B22, #FFC107);
+  background: linear-gradient(45deg, #5cb75c, #FFC107);
 }
 </style>

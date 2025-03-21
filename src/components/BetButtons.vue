@@ -1,11 +1,16 @@
 <template>
   <div class="container">
     <button
-        v-for="(emoji, index) in emojis"
+        v-for="(emoji, index) in gameStore.betButtonEmojis"
         :key="index"
         class="button"
-        :class="{'selected': selectedIndex === index}"
-        @click="handleClick(index, emoji)"
+        :class="{
+        'selected': gameStore.selectedIndex === index,
+        'winning': gameStore.winningIndex === index,
+        'disabled': gameStore.selectedIndex !== null
+      }"
+        @click="gameStore.placeBet(index, emoji)"
+        :disabled="gameStore.selectedIndex !== null"
     >
       Bet {{ emoji }}
     </button>
@@ -13,19 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useLogStore } from '@/stores/logStore'
-
-const emojis = ref(["🎭", "🔮", "🌟", "💎️", "♦️", "🧿", "🔸", "🔳", "🪬"])
-const logStore = useLogStore()
-const { logClick } = logStore
-
-const selectedIndex = ref<number | null>(null)
-
-const handleClick = (index: number, emoji: string) => {
-  selectedIndex.value = index
-  logClick(index, emoji)
-}
+import { useGameStore } from '@/stores/gameStore';
+const gameStore = useGameStore();
 </script>
 
 <style scoped>
@@ -56,11 +50,17 @@ const handleClick = (index: number, emoji: string) => {
   color: white;
   outline: none;
 }
-
 .selected {
   background: linear-gradient(135deg, violet, orange);
   color: white;
-  outline: none;
   border: transparent;
+}
+.winning {
+  background: linear-gradient(45deg, #5cb75c, violet);
+  border: 3px solid black;
+  color: white;
+}
+.disabled {
+  cursor: not-allowed;
 }
 </style>

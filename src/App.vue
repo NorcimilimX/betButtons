@@ -1,23 +1,27 @@
 <template>
   <AuthForm v-if="!authStore.user" />
   <div v-else class="main-container">
+    <WinLoseAnimation v-if="gameStore.isOverlayVisible" />
     <RulesModal />
     <CommandMonitor />
-    <GridButtons />
+    <BetButtons />
     <BurgerMenu />
   </div>
 </template>
 
 <script setup lang="ts">
 import AuthForm from '@/components/AuthForm.vue'
-import GridButtons from '@/components/GridButtons.vue'
+import BetButtons from '@/components/BetButtons.vue'
 import BurgerMenu from '@/components/BurgerMenu.vue'
 import CommandMonitor from "@/components/CommandMonitor.vue"
-import RulesModal from "@/components/RulesModal.vue";
+import RulesModal from "@/components/RulesModal.vue"
+import WinLoseAnimation from "@/components/WinLoseAnimation.vue"
 
 import { useAuthStore } from '@/stores/authStore'
+import { useGameStore} from "@/stores/gameStore"
 
 const authStore = useAuthStore()
+const gameStore = useGameStore()
 </script>
 
 <style>
