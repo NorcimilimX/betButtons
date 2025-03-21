@@ -1,5 +1,7 @@
 # buttons-guess-game
 
+# Visit to try https://norcimilimx.github.io/betButtons
+
 ## Project setup
 ```
 npm install
